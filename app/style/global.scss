@@ -1,0 +1,10 @@
+html {
+  @apply bg-[var(--k-background-color)] text-[var(--p-text-color)] transition-[background] duration-300;
+}
+
+html[data-theme='light'] {
+  @apply pattern-i-like-food-pattern-light/30;
+}
+html[data-theme='dark'] {
+  @apply pattern-i-like-food-pattern-dark/30;
+}

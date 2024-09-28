@@ -1,0 +1,115 @@
+@import './tailwindcss/color/index';
+$themes: (
+  light: (
+    //primary: (
+    //  50: $primary-light-50,
+    //  100: $primary-light-100,
+    //  200: $primary-light-200,
+    //  300: $primary-light-300,
+    //  400: $primary-light-400,
+    //  500: $primary-light-500,
+    //  600: $primary-light-600,
+    //  700: $primary-light-700,
+    //  800: $primary-light-800,
+    //  900: $primary-light-900,
+    //  950: $primary-light-950,
+    //  DEFAULT: $primary-light-500,
+    //),
+    //font: #363636,
+    //font-reverse: #f7f9fe,
+    background: #f7f9fe,
+    card-bg: #ffffff,
+  ),
+  dark: (
+    //primary: (
+    //  50: $primary-dark-50,
+    //  100: $primary-dark-100,
+    //  200: $primary-dark-200,
+    //  300: $primary-dark-300,
+    //  400: $primary-dark-400,
+    //  500: $primary-dark-500,
+    //  600: $primary-dark-600,
+    //  700: $primary-dark-700,
+    //  800: $primary-dark-800,
+    //  900: $primary-dark-900,
+    //  950: $primary-dark-950,
+    //  DEFAULT: $primary-dark-500,
+    //),
+    //font: #f7f7fa,
+    //font-reverse: #18171d,
+    background: #18171d,
+    card-bg: #2a2a2a,
+  ),
+);
+@mixin apply-theme($theme) {
+  @each $type, $values in map-get($themes, $theme) {
+    @if $type == primary {
+      @each $key, $value in $values {
+        --k-primary-color-#{$key}: #{$value};
+      }
+      --k-primary-color: var(--k-primary-color-DEFAULT);
+    } @else {
+      --k-#{$type}-color: #{$values};
+    }
+  }
+}
+
+@mixin primevue-light() {
+  --p-primary-50: #{$primary-light-50-rgb};
+  --p-primary-100: #{$primary-light-100-rgb};
+  --p-primary-200: #{$primary-light-200-rgb};
+  --p-primary-300: #{$primary-light-300-rgb};
+  --p-primary-400: #{$primary-light-400-rgb};
+  --p-primary-500: #{$primary-light-500-rgb};
+  --p-primary-600: #{$primary-light-600-rgb};
+  --p-primary-700: #{$primary-light-700-rgb};
+  --p-primary-800: #{$primary-light-800-rgb};
+  --p-primary-900: #{$primary-light-900-rgb};
+  --p-primary-950: #{$primary-light-950-rgb};
+
+  --p-primary-color: rgb(var(--p-primary-500));
+  --p-primary-contrast-color: var(--p-surface-0);
+  --p-primary-hover-color: rgb(var(--p-primary-600));
+  --p-primary-active-color: rgb(var(--p-primary-700));
+  --p-content-border-color: var(--p-surface-200);
+  --p-content-hover-background: var(--p-surface-100);
+  --p-content-hover-color: var(--p-surface-800);
+  --p-highlight-background: rgb(var(--p-primary-50));
+  --p-highlight-color: rgb(var(--p-primary-700));
+  --p-highlight-focus-background: rgb(var(--p-primary-100));
+  --p-highlight-focus-color: rgb(var(--p-primary-800));
+  --p-text-color: #363636;
+  --p-text-color-reverse: #f7f9fe;
+  --p-text-hover-color: #262626;
+  --p-text-muted-color: #5d5d5d;
+  --p-text-hover-muted-color: #4f4f4f;
+}
+@mixin primevue-dark() {
+  --p-primary-50: #{$primary-dark-50-rgb};
+  --p-primary-100: #{$primary-dark-100-rgb};
+  --p-primary-200: #{$primary-dark-200-rgb};
+  --p-primary-300: #{$primary-dark-300-rgb};
+  --p-primary-400: #{$primary-dark-400-rgb};
+  --p-primary-500: #{$primary-dark-500-rgb};
+  --p-primary-600: #{$primary-dark-600-rgb};
+  --p-primary-700: #{$primary-dark-700-rgb};
+  --p-primary-800: #{$primary-dark-800-rgb};
+  --p-primary-900: #{$primary-dark-900-rgb};
+  --p-primary-950: #{$primary-dark-950-rgb};
+  --p-primary-color: rgb(var(--p-primary-400));
+  --p-primary-contrast-color: var(--p-surface-100);
+  --p-primary-hover-color: rgb(var(--p-primary-600)); // 600
+  --p-primary-active-color: rgb(var(--p-primary-700)); // 700
+  --p-content-border-color: var(--p-surface-500);
+  --p-content-hover-background: var(--p-surface-800);
+  --p-content-hover-color: var(--p-surface-0);
+  --p-highlight-background: color-mix(in srgb, #{$primary-dark-400}, transparent 84%);
+  --p-highlight-color: rgba(255, 255, 255, 0.87);
+  --p-highlight-focus-background: color-mix(in srgb, #{$primary-dark-400}, transparent 76%);
+  --p-highlight-focus-color: rgba(255, 255, 255, 0.87);
+  --p-text-color: #f7f7fa;
+  --p-text-color-reverse: #363636;
+  --p-text-hover-color: #d7d7e6;
+  --p-text-muted-color: #d7d7e6;
+  --p-text-hover-muted-color: #e8e8f1;
+}

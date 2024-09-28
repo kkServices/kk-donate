@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model DonateOrders {
+  id              Int                 @id @default(autoincrement())
+  outTradeNo      String              @map("out_trade_no")
+  tradeNo         String?             @map("trade_no")
+  donatePayType   DONATE_PAY_TYPE     @default(ALIPAY) @map("donate_pay_type")
+  donateMessageId Int?                @map("donate_message_id")
+  payStatus       DONATE_ORDER_STATUS @default(WAIT_BUYER_PAY) @map("pay_status")
+  payMethod       DONATE_PAY_METHOD   @map("pay_method")
+  totalAmount     Float               @map("total_amount")
+  receiptAmount   Float?              @map("receipt_amount")
+  email           String?             @map("buyer_email")
+  buyerUserId     String?             @map("buyer_user_id")
+  notifyId        String?             @map("notify_id")
+  createdAt       DateTime            @default(now()) @map("created_at")
+  updatedAt       DateTime            @updatedAt @map("updated_at")
+  donateMessage   DonateMessages?     @relation(fields: [donateMessageId], references: [id])
+
+  @@map("donate_orders")
+}
+
+model DonateMessages {
+  id           Int                   @id @default(autoincrement())
+  content      String
+  status       DONATE_MESSAGE_STATUS @default(WAITING)
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+  donateOrders DonateOrders[]
+
+  @@map("donate_messages")
+}
+
+enum DONATE_PAY_TYPE {
+  ALIPAY
+}
+
+enum DONATE_MESSAGE_STATUS {
+  SUCCESS
+  WAITING
+  FAIL
+}
+
+enum DONATE_PAY_METHOD {
+  API
+  STATIC_CODE
+}
+
+enum DONATE_ORDER_STATUS {
+  TRADE_FINISHED
+  TRADE_SUCCESS
+  TRADE_CLOSED
+  WAIT_BUYER_PAY
+}

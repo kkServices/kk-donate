@@ -1,0 +1,128 @@
+@import '@/style/tailwindcss/color/index';
+:root {
+  --toastify-toast-min-height: 52px;
+  --toastify-text-color-light: var(--p-text-color);
+  --toastify-text-color-dark: var(--p-text-color);
+  --toastify-color-progress-dark: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+  --toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+
+  --toastify-icon-color-info: Rblue-600;
+  --toastify-icon-color-success: #{$green-600};
+  --toastify-icon-color-warning: #{$yellow-600};
+  --toastify-icon-color-error: #{$red-600};
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #fff;
+    --toastify-color-info: color-mix(in srgb, #{$blue-50}, transparent 5%);
+    --toastify-color-success: color-mix(in srgb, #{$green-50}, transparent 5%);
+    --toastify-color-warning: color-mix(in srgb, #{$yellow-50}, transparent 5%);
+    --toastify-color-error: color-mix(in srgb, #{$red-50}, transparent 5%);
+    --toastify-text-color-info: #{$blue-600};
+    --toastify-text-color-success: #{$green-600};
+    --toastify-text-color-warning: #{$yellow-600};
+    --toastify-text-color-error: #{$red-600};
+
+    --toastify-color-progress-info: #{$blue-300};
+    --toastify-color-progress-success: #{$green-300};
+    --toastify-color-progress-warning: #{$yellow-300};
+    --toastify-color-progress-error: #{$red-300};
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --toastify-color-light: #121212;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: color-mix(in srgb, #{$blue-500}, transparent 84%);
+    --toastify-color-success: color-mix(in srgb, #{$green-500}, transparent 84%);
+    --toastify-color-warning: color-mix(in srgb, #{$yellow-500}, transparent 84%);
+    --toastify-color-error: color-mix(in srgb, #{$red-500}, transparent 84%);
+
+    --toastify-text-color-info: #{$blue-600};
+    --toastify-text-color-success: #{$green-600};
+    --toastify-text-color-warning: #{$yellow-600};
+    --toastify-text-color-error: #{$red-600};
+
+    --toastify-color-progress-info: #{$blue-800};
+    --toastify-color-progress-success: #{$green-800};
+    --toastify-color-progress-warning: #{$yellow-800};
+    --toastify-color-progress-error: #{$red-800};
+  }
+}
+
+[data-theme='light'] {
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #fff;
+  --toastify-color-info: color-mix(in srgb, #{$blue-50}, transparent 5%);
+  --toastify-color-success: color-mix(in srgb, #{$green-50}, transparent 5%);
+  --toastify-color-warning: color-mix(in srgb, #{$yellow-50}, transparent 5%);
+  --toastify-color-error: color-mix(in srgb, #{$red-50}, transparent 5%);
+  --toastify-text-color-info: #{$blue-600};
+  --toastify-text-color-success: #{$green-600};
+  --toastify-text-color-warning: #{$yellow-600};
+  --toastify-text-color-error: #{$red-600};
+
+  --toastify-color-progress-info: #{$blue-300};
+  --toastify-color-progress-success: #{$green-300};
+  --toastify-color-progress-warning: #{$yellow-300};
+  --toastify-color-progress-error: #{$red-300};
+}
+[data-theme='dark'] {
+  --toastify-color-light: #121212;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: color-mix(in srgb, #{$blue-500}, transparent 84%);
+  --toastify-color-success: color-mix(in srgb, #{$green-500}, transparent 84%);
+  --toastify-color-warning: color-mix(in srgb, #{$yellow-500}, transparent 84%);
+  --toastify-color-error: color-mix(in srgb, #{$red-500}, transparent 84%);
+
+  --toastify-text-color-info: #{$blue-600};
+  --toastify-text-color-success: #{$green-600};
+  --toastify-text-color-warning: #{$yellow-600};
+  --toastify-text-color-error: #{$red-600};
+
+  --toastify-color-progress-info: #{$blue-800};
+  --toastify-color-progress-success: #{$green-800};
+  --toastify-color-progress-warning: #{$yellow-800};
+  --toastify-color-progress-error: #{$red-800};
+}
+
+.Toastify {
+  &__toast {
+    border-radius: var(--p-content-border-radius);
+  }
+  &__close-button,
+  &__close-button--dark {
+    color: var(--p-text-color);
+  }
+  &__toast-theme--colored &__close-button {
+    color: var(--p-text-resver-color);
+  }
+  &__toast-container--top-center,
+  &__toast-container--bottom-center {
+    .Toastify__toast {
+      width: fit-content;
+      max-width: var(--toastify-toast-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &__toast-body {
+    word-break: break-all;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .Toastify {
+    &__toast {
+      margin-bottom: 1rem;
+    }
+    &__toast-container--top-center,
+    &__toast-container--bottom-center {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
